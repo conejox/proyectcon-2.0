@@ -16,7 +16,14 @@ function App() {
       <ul>
         {products.map(product => (
           <li key={product.id}>
-            {product.name} – ${product.price}
+            <h3>{product.name} – ${product.price}</h3>
+            {product.image && (
+              <img
+                src={`http://127.0.0.1:8000${product.image}`}
+                alt={product.name}
+                width="150"
+              />
+            )}
           </li>
         ))}
       </ul>

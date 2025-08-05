@@ -4,17 +4,21 @@
     <title>Product List</title>
 </head>
 <body>
-    <h1>Available Products</h1>
-    <ul>
-        {% for product in products %}
-            <li>
-                <strong>{{ product.name }}</strong> - ${{ product.price }}<br>
-                {{ product.description }}
-            </li>
-        {% empty %}
-            <li>No products available.</li>
-        {% endfor %}
-    </ul>
+   <h1>Product List</h1>
+<a href="{% url 'product_create' %}">Add Product</a>
+<ul>
+    {% for product in products %}
+        <li>
+            {{ product.name }} – ${{ product.price }}
+            {% if product.image %}
+                <img src="{{ product.image.url }}" width="100">
+            {% endif %}
+            <a href="{% url 'product_update' product.pk %}">Edit</a>
+            <a href="{% url 'product_delete' product.pk %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+
 </body>
 </html>
 <!DOCTYPE html>
